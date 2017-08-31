@@ -38,7 +38,7 @@ class nativeUI(QWidget):
 
         # set Background color
         palette =  QPalette()
-        palette.setColor(self.backgroundRole(), QColor(0,0,0))
+        palette.setColor(self.backgroundRole(), QColor(255,255,255))
         self.setPalette(palette)
 
         #self.setMouseTracking(True)
@@ -87,17 +87,18 @@ class nativeUI(QWidget):
 
     def drawmaze(self, qp):
         (Nx,Ny) = self.maze.shape
-        qp.setPen(0)
+        qp.setPen(Qt.NoPen)
         for i in range(Nx):
             for j in range(Ny):
                 if self.maze[i,j] == 1:
                     qp.setBrush(QColor(255, 0, 0))  # Player
-                elif self.maze[i,j] == -1:
-                    qp.setBrush(QColor(255, 255, 255))  # Wall
+                elif self.maze[i,j] == 0:
+                    qp.setBrush(QColor(255, 255, 255))  # Ground
                 elif self.maze[i,j] == 2:
                     qp.setBrush(QColor(255,255,0)) # Target
-                if self.maze[i,j] != 0:
-                    qp.drawRect(i*self.ax, j*self.ay ,self.ax,self.ay)
+                elif self.maze[i,j] == -1:
+                    qp.setBrush(QColor(0,0,0)) # Wall
+                qp.drawRect(i*self.ax, j*self.ay ,self.ax,self.ay)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
