@@ -6,7 +6,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
 class nativeUI(QWidget):
-    playsignal = pyqtSignal(tuple) 
+    playsignal = pyqtSignal(int) 
 
     def __init__(self,pressaction,maze,sizeunit):
         super(nativeUI,self).__init__(None)
@@ -68,7 +68,7 @@ class nativeUI(QWidget):
 
         qp.setPen(QColor(0,0,0))
         font = qp.font()
-        font.setPixelSize(width/10)
+        font.setPixelSize(width/5)
         qp.setFont(font)
         qp.drawText(QRect(size.width()/2-width/2, size.height()/2-height/2, width, height),	0x0004|0x0080,str("Game End")) 
     
@@ -81,9 +81,18 @@ class nativeUI(QWidget):
         self.ay = height/Ny
     
     def keyPressEvent(self,e):
-        pass
-        #self.playsignal.emit((X,Y))
-        #self.update()
+        mode = -1
+        if e.key() == Qt.Key_Up:
+            mode = 3
+        elif e.key() == Qt.Key_Down:
+            mode = 2
+        elif e.key() == Qt.Key_Left:
+            mode = 1
+        elif e.key() == Qt.Key_Right:
+            mode = 0
+            
+        if mode != -1:
+            self.playsignal.emit(mode)
 
     def drawmaze(self, qp):
         (Nx,Ny) = self.maze.shape

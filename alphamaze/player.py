@@ -13,7 +13,7 @@ class Human:
         self.direction = (0,0)
         self.activate = False
 
-    def setdirection(self,mode)
+    def setdirection(self,mode):
         if mode == 0:
             self.direction = (1,0)
         elif mode == 1:
@@ -28,5 +28,5 @@ class Human:
     def play(self,maze):
         if self.activate:
             self.activate = False
-            return direction
+            return self.direction
         return (0,0)

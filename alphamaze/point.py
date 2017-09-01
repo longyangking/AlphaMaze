@@ -3,14 +3,14 @@ import numpy as np
 class Point:
     def __init__(self,position,player):
         self.position = position
-        self,player = player
-        self.iswin = False
+        self.player = player
+        self.winstatus = False
 
     def getposition(self):
         return self.position
 
     def iswin(self):
-        return self.iswin
+        return self.winstatus
 
     def update(self,maze):
         (Nx,Ny) = maze.shape
@@ -24,4 +24,4 @@ class Point:
             if (maze[position] != -1):  # Not Wall
                 self.position = position
             if (maze[position] == 2):   # Get Target
-                self.iswin = True
+                self.winstatus = True

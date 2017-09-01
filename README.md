@@ -1,14 +1,11 @@
 # AlphaMaze
 > Maze Game with Artificial Intelligence
 
-![](./pics/ui.png)
+![](./pics/maze.png)
 
 ## Features
 + Reinforcement Learning
-
-+ Maze Generation
-
-![](./pics/maze.png)
++ High-quality Maze Generation
 
 ## Status
 Working on it

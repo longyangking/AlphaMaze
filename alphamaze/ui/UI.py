@@ -19,11 +19,17 @@ class UI(threading.Thread):
     def run(self):
         print('Init UI...')
         self.app = QApplication(sys.argv)
-        self.UI = nativeUI.nativeUI(pressaction=self.pressaction,maze=self.maze,sizeunit=self.sizeunit)
+        self.ui = nativeUI.nativeUI(pressaction=self.pressaction,maze=self.maze,sizeunit=self.sizeunit)
         self.app.exec_()
 
     def setmaze(self,maze):
-        return self.UI.setmaze(maze)
+        while not self.ui:
+            pass
+            
+        return self.ui.setmaze(maze)
     
     def gameend(self):
-        self.UI.gameend()
+        while not self.ui:
+            pass
+            
+        self.ui.gameend()

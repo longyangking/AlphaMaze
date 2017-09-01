@@ -18,12 +18,15 @@ class MazeGame:
         self.ui = ui.UI(pressaction=self.player.setdirection,maze=maze)
         self.ui.start()
         
-        while self.gameengine.update():
+        
+        while not self.gameengine.update():
             self.ui.setmaze(maze=self.gameengine.getmaze())
 
         self.ui.gameend()
 
+        print('Game End')
+
 if __name__=="__main__":
-    shape = (40,40)
-    retrosnake = RetroSnake(shape)
-    retrosnake.start()
+    shape = (30,30)
+    mazegame = MazeGame(shape)
+    mazegame.start()

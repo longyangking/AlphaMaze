@@ -1,6 +1,6 @@
 import numpy as np 
 import mazegenerator
-import player
+import point
 
 class GameEngine:
     def __init__(self,shape,player):
@@ -15,12 +15,30 @@ class GameEngine:
 
         self.player = player
 
+    def __findallvalidplaces(self):
+        (Nx,Ny) = self.shape
+        places = list(range(Nx*Ny))
+        for i in range(Nx):
+            for j in range(Ny):
+                place = j*Nx + i 
+                pos = self.__place2pos(place)
+                if self.maze[pos] != 0:
+                    places.remove(place)
+
+        return places
+
+    def __place2pos(self,place):
+        (Nx,Ny) = self.shape
+        pos = (int(place/Nx),place%Nx)
+        return pos
+
     def getmaze(self):
         return self.maze
 
     def start(self):
         mazemaker = mazegenerator.MazeMaker()
         self.maze = mazemaker.make(shape=self.shape,startposition=(0,0))
+        self.shape = self.maze.shape
 
         # Target Position
         validplaces = self.__findallvalidplaces()
