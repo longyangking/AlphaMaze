@@ -9,14 +9,14 @@
 
 ## Dependencies
 + Python 3+
++ Keras, Tensorflow
 + PyQt5
 + h5py
 
-## Status
-Working on it... AI will coming soon
+## How to use
++ Play Maze game by yourself
 
-## How to play
-+ Install dependencies (Linux)  
-```pip install PyQt5 h5py```
-+ In the terminal (Linux)  
-```python alphamaze/mazegame.py```
+        cd alphamaze
+        python alphamaze.py --play
+
++ Re-train AI model for Maze game (coming)
